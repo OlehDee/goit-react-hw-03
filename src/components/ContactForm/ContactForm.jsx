@@ -1,14 +1,15 @@
-import * as Yup from "yup";
+import { object, string } from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import css from "./ContactForm.module.css";
 
 export default function ContactForm({ onAdd }) {
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required("Name is required"),
-    number: Yup.string()
-      .matches(/^[0-9]*$/, "Invalid number")
-      .required("Number is required"),
-  });
+  const validationSchema = object({
+  name: string().required("Name is required"),
+  number: string()
+    .matches(/^[0-9]*$/, "Invalid number")
+    .required("Number is required"),
+});
+
 
   const handleSubmit = (values, actions) => {
     onAdd({
